@@ -1,0 +1,92 @@
+# ----------------------------
+# Node & npm
+# ----------------------------
+node_modules/
+npm-debug.log*
+yarn-error.log*
+pnpm-lock.yaml
+# (You may want to keep yarn.lock or package-lock.json under version control
+# if you prefer reproducible builds. Adjust this as needed.)
+
+# ----------------------------
+# Logs
+# ----------------------------
+*.log
+logs
+*.log.*
+log/
+
+# ----------------------------
+# Coverage
+# ----------------------------
+coverage/
+*.lcov
+
+# ----------------------------
+# React Native - iOS
+# ----------------------------
+ios/Pods/
+ios/build/
+*.xcworkspace
+*.xcodeproj
+*.xcuserstate
+*.xcscmblueprint
+.DS_Store
+
+# ----------------------------
+# React Native - Android
+# ----------------------------
+android/app/build/
+android/build/
+*.apk
+*.keystore
+*.gradle
+*.iml
+.idea/
+local.properties
+
+# ----------------------------
+# React Native - Misc
+# ----------------------------
+*.jks
+build/
+.gradle/
+tmp/
+# React Native Packager cache
+*.pack
+
+# ----------------------------
+# Watchman
+# ----------------------------
+.watchmanconfig
+
+# ----------------------------
+# Buck
+# ----------------------------
+buck-out/
+\.buckd/
+
+# ----------------------------
+# Expo / Metro Bundler / Misc
+# ----------------------------
+.expo/
+.expo-shared/
+dist/
+.expo-cache/
+# Bundler output
+.bundle/
+
+# ----------------------------
+# Editor / IDE
+# ----------------------------
+.vscode/
+*.swp
+*.swo
+*~
+.idea/
+
+# ----------------------------
+# Operating System
+# ----------------------------
+.DS_Store
+Thumbs.db
