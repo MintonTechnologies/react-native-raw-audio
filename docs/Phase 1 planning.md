@@ -1,4 +1,4 @@
-# iOS File Structure
+# Phase 1 planning: iOS File Structure
 
 For the first revision, I am aiming for a simpler project with this file structure:
 

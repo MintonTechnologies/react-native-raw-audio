@@ -2,23 +2,30 @@
 
 @interface RCT_EXTERN_MODULE(RawAudioModule, NSObject)
 
-RCT_EXTERN_METHOD(
-  requestPermission:
-    (RCTPromiseResolveBlock)resolve
-    reject:(RCTPromiseRejectBlock)reject
-)
-
+// Start
 RCT_EXTERN_METHOD(
   startRecording:
     (NSDictionary)options
-    resolve:(RCTPromiseResolveBlock)resolve
-    reject:(RCTPromiseRejectBlock)reject
+    resolve:
+      (RCTPromiseResolveBlock)resolve
+    reject:
+      (RCTPromiseRejectBlock)reject
 )
 
+// New: readChunk
+RCT_EXTERN_METHOD(
+  readChunk:
+    (RCTPromiseResolveBlock)resolve
+    reject:
+      (RCTPromiseRejectBlock)reject
+)
+
+// Stop
 RCT_EXTERN_METHOD(
   stopRecording:
     (RCTPromiseResolveBlock)resolve
-    reject:(RCTPromiseRejectBlock)reject
+    reject:
+      (RCTPromiseRejectBlock)reject
 )
 
 @end
