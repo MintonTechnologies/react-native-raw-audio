@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.2.2",
+  "version": "1.2.3",
   "main": "index.js",
   "directories": {
     "doc": "docs"
@@ -17,5 +17,16 @@
   "description": "",
   "dependencies": {
     "react-native": "^0.76.5"
+  },
+  "devDependencies": {
+    "react-native-codegen": "^0.76.0"
+  },
+  "codegenConfig": {
+    "name": "RawAudioModuleSpec",
+    "type": "modules",
+    "jsSrcsDir": "./src",
+    "ios": {
+      "modulesConformingToProtocol": {}
+    }
   }
 }
