@@ -14,7 +14,9 @@ export default class MediaRecorder {
   }
 
   async start() {
+    console.log('Starting Audio')
     await startRecording(this.options, (chunk) => {
+      console.log('Audio started')
       if (this.ondataavailable) {
         this.ondataavailable(chunk);
       }
@@ -27,12 +29,14 @@ export default class MediaRecorder {
     this._pollId = setInterval(async () => {
       const chunk = await readChunk();
       if (chunk && this.ondataavailable) {
+        console.log('Audio chunk: ', chunk )
         this.ondataavailable(chunk);
       }
     }, 200);
   }
 
   async stop() {
+    console.log('Stopping Audio')
     clearInterval(this._pollId);
     this._pollId = null;
     await stopRecording();
