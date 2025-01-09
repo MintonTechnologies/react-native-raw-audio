@@ -1,6 +1,7 @@
 import AVFoundation
 
 class AudioEngineManager {
+  static let shared = AudioEngineManager()
   private let engine = AVAudioEngine()
   private var isRunning = false
 
@@ -29,6 +30,7 @@ class AudioEngineManager {
         }
       }
 
+      engine.prepare()
       try engine.start()
       isRunning = true
       completion(nil)
@@ -42,17 +44,16 @@ class AudioEngineManager {
       completion(nil)
       return
     }
-    engine.inputNode.removeTap(onBus: 0)
     engine.stop()
+    engine.inputNode.removeTap(onBus: 0)
     isRunning = false
     completion(nil)
   }
 
-  // Convert AVAudioPCMBuffer to raw PCM bytes
   private func convertToPCM(buffer: AVAudioPCMBuffer) -> Data? {
-    guard let channelData = buffer.floatChannelData?[0] else { return nil }
-    let frameCount = Int(buffer.frameLength)
-    let byteCount = frameCount * MemoryLayout<Float>.size
-    return Data(bytes: channelData, count: byteCount)
+    // Implement conversion to PCM data
+    let audioBuffer = buffer.audioBufferList.pointee.mBuffers
+    let data = Data(bytes: audioBuffer.mData!, count: Int(audioBuffer.mDataByteSize))
+    return data
   }
 }

@@ -45,6 +45,22 @@ class RawAudioModule: NSObject {
   }
 
   @objc
+  func readChunk(
+    _ resolve: @escaping RCTPromiseResolveBlock,
+    reject: @escaping RCTPromiseRejectBlock
+  ) {
+    AudioEngineManager.shared.readChunk { data, error in
+      if let err = error {
+        reject("ERR_READ_CHUNK", err.localizedDescription, err)
+      } else if let chunkData = data {
+        resolve(chunkData.base64EncodedString())
+      } else {
+        resolve(nil)
+      }
+    }
+  }
+
+  @objc
   static func requiresMainQueueSetup() -> Bool {
     return false
   }

@@ -1,23 +1,33 @@
-import { startRecording, readChunk, stopRecording } from './index';
+import { requestPermission, startRecording, stopRecording, readChunk } from './index';
 
 export default class MediaRecorder {
   constructor(options = {}) {
     this.options = options;
     this.onstart = null;
-    this.onstop = null;
     this.ondataavailable = null;
+    this.onstop = null;
     this._pollId = null;
   }
 
-  async start() {
-    await startRecording(this.options);
-    if (this.onstart) this.onstart();
+  async requestPermission() {
+    return await requestPermission();
+  }
 
-    // Poll for chunks every 200 ms
+  async start() {
+    await startRecording(this.options, (chunk) => {
+      if (this.ondataavailable) {
+        this.ondataavailable(chunk);
+      }
+    });
+
+    if (this.onstart) {
+      this.onstart();
+    }
+
     this._pollId = setInterval(async () => {
-      const base64Chunk = await readChunk();
-      if (base64Chunk && base64Chunk.length > 0 && this.ondataavailable) {
-        this.ondataavailable(base64Chunk);
+      const chunk = await readChunk();
+      if (chunk && this.ondataavailable) {
+        this.ondataavailable(chunk);
       }
     }, 200);
   }
